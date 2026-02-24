@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{text-align:center;font-family:Arial;background:#56ccf2;}
+</style>
+</head>
+
+<body>
+
+<h2>Your Lung Report</h2>
+
+<h3 id="bmi"></h3>
+<h3 id="capacity"></h3>
+<h3 id="efficiency"></h3>
+<h3 id="risk"></h3>
+
+<canvas id="chart"></canvas>
+
+<br><br>
+<button onclick="goExercise()">Exercises</button>
+<button onclick="goCertificate()">Certificate</button>
+
+<script>
+
+let age=localStorage.getItem("age");
+let height=localStorage.getItem("height")/100;
+let weight=localStorage.getItem("weight");
+let activity=localStorage.getItem("activity");
+
+let bmi=(weight/(height*height)).toFixed(2);
+let capacity=(4000-(age*10)-(bmi*20)+(activity*200)).toFixed(2);
+let efficiency=((capacity/4000)*100).toFixed(2);
+
+let risk="";
+
+if(efficiency>85) risk="Normal";
+else if(efficiency>70) risk="Moderate Risk";
+else risk="High Risk";
+
+bmi.innerHTML="BMI: "+bmi;
+capacity.innerHTML="Capacity: "+capacity+" ml";
+efficiency.innerHTML="Efficiency: "+efficiency+"%";
+risk.innerHTML="Risk Level: "+risk;
+
+new Chart(document.getElementById('chart'),{
+type:'bar',
+data:{
+labels:["BMI","Efficiency"],
+datasets:[{label:"Report",data:[bmi,efficiency]}]
+}
+});
+
+function goExercise(){
+window.location="exercise.html";
+}
+
+function goCertificate(){
+localStorage.setItem("eff",efficiency);
+localStorage.setItem("risk",risk);
+window.location="certificate.html";
+}
+
+</script>
+
+</body>
+</html>
