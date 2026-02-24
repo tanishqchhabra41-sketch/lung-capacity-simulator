@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html>
-<body style="text-align:center;font-family:Arial">
+<head>
+<style>
 
-<h1>Certificate</h1>
+body{
+text-align:center;
+font-family:Segoe UI;
+background:#e0f7fa;
+}
 
-<h2 id="name"></h2>
-<h3 id="eff"></h3>
-<h3 id="risk"></h3>
+.certificate{
+background:white;
+width:600px;
+margin:auto;
+margin-top:50px;
+padding:30px;
+border:5px solid black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="certificate">
+
+<h1>Certificate of Lung Health Analysis</h1>
+
+<h2>This Certifies That</h2>
+<h2 id="personName"></h2>
+
+<h3>Has Lung Efficiency of</h3>
+<h2 id="eff"></h2>
+
+<h3>Risk Level:</h3>
+<h2 id="risk"></h2>
+
+</div>
 
 <script>
 
-name.innerHTML=localStorage.getItem("name");
-eff.innerHTML="Efficiency: "+localStorage.getItem("eff")+"%";
-risk.innerHTML="Risk: "+localStorage.getItem("risk");
+document.getElementById("personName").innerHTML=localStorage.getItem("name");
+document.getElementById("eff").innerHTML=localStorage.getItem("eff")+"%";
+document.getElementById("risk").innerHTML=localStorage.getItem("risk");
 
 </script>
 
