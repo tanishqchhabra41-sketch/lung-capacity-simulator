@@ -17,7 +17,7 @@ align-items:center;
 }
 
 .card{
-width:700px;
+width:750px;
 padding:30px;
 border-radius:20px;
 background:rgba(255,255,255,0.2);
@@ -27,10 +27,6 @@ text-align:center;
 color:white;
 }
 
-h2{
-margin-bottom:20px;
-}
-
 .report{
 display:flex;
 justify-content:space-around;
@@ -38,10 +34,20 @@ margin:20px 0;
 }
 
 .box{
-background:rgba(255,255,255,0.3);
+background:white;
+color:black;
 padding:15px;
 border-radius:10px;
-width:120px;
+width:140px;
+}
+
+.box h4{
+margin:0;
+}
+
+.value{
+font-size:22px;
+font-weight:bold;
 }
 
 canvas{
@@ -67,28 +73,28 @@ cursor:pointer;
 
 <div class="card">
 
-<h2>Lung Health Report</h2>
+<h2>Lung Health Insights</h2>
 
 <div class="report">
 
 <div class="box">
 <h4>BMI</h4>
-<p id="bmi"></p>
+<p class="value" id="bmi"></p>
 </div>
 
 <div class="box">
 <h4>Capacity</h4>
-<p id="capacity"></p>
+<p class="value" id="capacity"></p>
 </div>
 
 <div class="box">
 <h4>Efficiency</h4>
-<p id="efficiency"></p>
+<p class="value" id="efficiency"></p>
 </div>
 
 <div class="box">
 <h4>Risk</h4>
-<p id="risk"></p>
+<p class="value" id="risk"></p>
 </div>
 
 </div>
@@ -113,23 +119,23 @@ let capacity=(4000-(age*10)-(bmi*20)+(activity*200)).toFixed(2);
 let efficiency=((capacity/4000)*100).toFixed(2);
 
 let risk="";
+let riskColor="";
 
-if(efficiency>85) risk="Normal";
-else if(efficiency>70) risk="Moderate";
-else risk="High";
+if(efficiency>85){risk="Normal";riskColor="green";}
+else if(efficiency>70){risk="Moderate";riskColor="orange";}
+else{risk="High";riskColor="red";}
 
 document.getElementById("bmi").innerHTML=bmi;
 document.getElementById("capacity").innerHTML=capacity+" ml";
 document.getElementById("efficiency").innerHTML=efficiency+"%";
 document.getElementById("risk").innerHTML=risk;
+document.getElementById("risk").style.color=riskColor;
 
 new Chart(document.getElementById('chart'),{
 type:'doughnut',
 data:{
 labels:["BMI","Efficiency"],
-datasets:[{
-data:[bmi,efficiency]
-}]
+datasets:[{data:[bmi,efficiency]}]
 }
 });
 
