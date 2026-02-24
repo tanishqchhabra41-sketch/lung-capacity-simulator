@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BreatheWise</title>
+
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(to right,#56ccf2,#2f80ed);
+text-align:center;
+}
+
+.container{
+background:white;
+width:400px;
+margin:auto;
+padding:20px;
+margin-top:50px;
+border-radius:15px;
+}
+
+input,select,button{
+width:90%;
+padding:10px;
+margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Lung Capacity Check</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+<input type="number" id="age" placeholder="Age">
+<input type="number" id="height" placeholder="Height (cm)">
+<input type="number" id="weight" placeholder="Weight (kg)">
+
+<select id="activity">
+<option value="1">Low Activity</option>
+<option value="2">Moderate Activity</option>
+<option value="3">High Activity</option>
+</select>
+
+<button onclick="goResult()">Check Lung Efficiency</button>
+
+</div>
+
+<script>
+function goResult(){
+
+localStorage.setItem("name",name.value);
+localStorage.setItem("age",age.value);
+localStorage.setItem("height",height.value);
+localStorage.setItem("weight",weight.value);
+localStorage.setItem("activity",activity.value);
+
+window.location="result.html";
+}
+</script>
+
+</body>
+</html>
