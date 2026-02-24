@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html>
-<body style="text-align:center;font-family:Arial">
+<head>
+<style>
 
-<h2>Breathing Exercises</h2>
+body{
+font-family:Segoe UI;
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+text-align:center;
+}
 
-<h3>Diaphragmatic Breathing</h3>
-<p>Deep breathing using diaphragm.</p>
+.card{
+width:600px;
+margin:auto;
+margin-top:50px;
+background:white;
+padding:30px;
+border-radius:15px;
+}
 
-<h3>Pursed Lip Breathing</h3>
-<p>Inhale through nose & exhale slowly.</p>
+.box{
+background:#e3f2fd;
+padding:15px;
+margin:10px;
+border-radius:10px;
+}
 
-<h3>Walking</h3>
-<p>Improves lung efficiency.</p>
+button{
+padding:10px 20px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Recommended Breathing Exercises</h2>
+
+<div class="box">
+<h4>Diaphragmatic Breathing</h4>
+<p>Deep breathing using diaphragm to improve oxygen intake.</p>
+</div>
+
+<div class="box">
+<h4>Pursed Lip Breathing</h4>
+<p>Inhale through nose and exhale slowly through lips.</p>
+</div>
+
+<div class="box">
+<h4>Daily Walking</h4>
+<p>Improves lung strength and endurance.</p>
+</div>
 
 <button onclick="back()">Back</button>
+
+</div>
 
 <script>
 function back(){
