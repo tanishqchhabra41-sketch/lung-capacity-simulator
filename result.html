@@ -1,69 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Lung Report</title>
+<title>Lung Analysis</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 body{
-margin:0;
 font-family:Segoe UI;
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+background:#eef6ff;
+text-align:center;
 }
 
 .card{
-width:750px;
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,0.2);
-backdrop-filter:blur(15px);
-box-shadow:0 8px 32px rgba(0,0,0,0.2);
-text-align:center;
-color:white;
-}
-
-.report{
-display:flex;
-justify-content:space-around;
-margin:20px 0;
-}
-
-.box{
+width:800px;
+margin:auto;
+margin-top:40px;
 background:white;
-color:black;
-padding:15px;
-border-radius:10px;
-width:140px;
-}
-
-.box h4{
-margin:0;
+padding:30px;
+border-radius:15px;
+box-shadow:0px 0px 15px grey;
 }
 
 .value{
-font-size:22px;
+font-size:24px;
 font-weight:bold;
 }
 
-canvas{
-background:white;
+.bar{
+width:100%;
+background:#ddd;
+height:20px;
 border-radius:10px;
-padding:10px;
+}
+
+.fill{
+height:20px;
+background:green;
+border-radius:10px;
 }
 
 button{
-margin:15px;
+margin:20px;
 padding:10px 20px;
-border:none;
-border-radius:5px;
-background:#00c6ff;
-color:white;
-cursor:pointer;
 }
 
 </style>
@@ -73,35 +52,21 @@ cursor:pointer;
 
 <div class="card">
 
-<h2>Lung Health Insights</h2>
+<h2>Lung Efficiency Analysis</h2>
 
-<div class="report">
+<p>BMI: <span class="value" id="bmi"></span></p>
+<p>Capacity: <span class="value" id="capacity"></span></p>
 
-<div class="box">
-<h4>BMI</h4>
-<p class="value" id="bmi"></p>
+<h3>Efficiency Level</h3>
+<div class="bar">
+<div class="fill" id="fill"></div>
 </div>
-
-<div class="box">
-<h4>Capacity</h4>
-<p class="value" id="capacity"></p>
-</div>
-
-<div class="box">
-<h4>Efficiency</h4>
-<p class="value" id="efficiency"></p>
-</div>
-
-<div class="box">
-<h4>Risk</h4>
-<p class="value" id="risk"></p>
-</div>
-
-</div>
+<br>
+<h2 id="efficiency"></h2>
+<h3 id="risk"></h3>
 
 <canvas id="chart"></canvas>
 
-<br>
 <button onclick="goExercise()">Exercises</button>
 <button onclick="goCertificate()">Certificate</button>
 
@@ -119,23 +84,29 @@ let capacity=(4000-(age*10)-(bmi*20)+(activity*200)).toFixed(2);
 let efficiency=((capacity/4000)*100).toFixed(2);
 
 let risk="";
-let riskColor="";
+let color="green";
 
-if(efficiency>85){risk="Normal";riskColor="green";}
-else if(efficiency>70){risk="Moderate";riskColor="orange";}
-else{risk="High";riskColor="red";}
+if(efficiency>85){risk="Normal";color="green";}
+else if(efficiency>70){risk="Moderate";color="orange";}
+else{risk="High";color="red";}
 
 document.getElementById("bmi").innerHTML=bmi;
 document.getElementById("capacity").innerHTML=capacity+" ml";
 document.getElementById("efficiency").innerHTML=efficiency+"%";
 document.getElementById("risk").innerHTML=risk;
-document.getElementById("risk").style.color=riskColor;
+document.getElementById("risk").style.color=color;
+
+document.getElementById("fill").style.width=efficiency+"%";
+document.getElementById("fill").style.background=color;
 
 new Chart(document.getElementById('chart'),{
-type:'doughnut',
+type:'bar',
 data:{
 labels:["BMI","Efficiency"],
-datasets:[{data:[bmi,efficiency]}]
+datasets:[{
+label:"Health Status",
+data:[bmi,efficiency]
+}]
 }
 });
 
@@ -146,6 +117,8 @@ window.location="exercise.html";
 function goCertificate(){
 localStorage.setItem("eff",efficiency);
 localStorage.setItem("risk",risk);
+let person=localStorage.getItem("name");
+localStorage.setItem("name",person);
 window.location="certificate.html";
 }
 
