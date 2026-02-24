@@ -5,18 +5,19 @@
 
 <style>
 body{
-font-family:Arial;
-background:linear-gradient(to right,#56ccf2,#2f80ed);
+font-family:Segoe UI;
+background:linear-gradient(135deg,#00c6ff,#0072ff);
 text-align:center;
 }
 
 .container{
 background:white;
-width:400px;
+width:450px;
 margin:auto;
-padding:20px;
-margin-top:50px;
+padding:30px;
+margin-top:60px;
 border-radius:15px;
+box-shadow:0px 0px 15px grey;
 }
 
 input,select,button{
@@ -24,6 +25,7 @@ width:90%;
 padding:10px;
 margin:10px;
 }
+
 </style>
 </head>
 
@@ -31,7 +33,7 @@ margin:10px;
 
 <div class="container">
 
-<h2>Lung Capacity Check</h2>
+<h2>Lung Capacity Analyzer</h2>
 
 <input type="text" id="name" placeholder="Enter Name">
 <input type="number" id="age" placeholder="Age">
@@ -49,16 +51,24 @@ margin:10px;
 </div>
 
 <script>
+
 function goResult(){
 
-localStorage.setItem("name",name.value);
-localStorage.setItem("age",age.value);
-localStorage.setItem("height",height.value);
-localStorage.setItem("weight",weight.value);
-localStorage.setItem("activity",activity.value);
+let personName=document.getElementById("name").value;
+let age=document.getElementById("age").value;
+let height=document.getElementById("height").value;
+let weight=document.getElementById("weight").value;
+let activity=document.getElementById("activity").value;
+
+localStorage.setItem("name",personName);
+localStorage.setItem("age",age);
+localStorage.setItem("height",height);
+localStorage.setItem("weight",weight);
+localStorage.setItem("activity",activity);
 
 window.location="result.html";
 }
+
 </script>
 
 </body>
